@@ -1,16 +1,13 @@
 file:
     upload-dir: /Users/dius_/Documents/uploads
-flyway:
-    password: admin123
-    schemas: rest_with_spring_boot_udemy
-    url: jdbc:mysql://localhost:3306/
-    user: root
 spring:
     datasource:
         driverClassName: com.mysql.cj.jdbc.Driver
         password: root
-        url: jdbc:mysql://localhost/registeredbooksapi?createDatabaseIfNotExist=true&serverTimezone=UTC
+        url: jdbc:mysql://localhost/registeredbooksapi?createDatabaseIfNotExist=false&serverTimezone=UTC
         username: root
+    flyway:
+        locations: classpath:db/migration #,classpath:db/testdata
     jackson:
         default-property-inclusion: NON_NULL
     jpa:
