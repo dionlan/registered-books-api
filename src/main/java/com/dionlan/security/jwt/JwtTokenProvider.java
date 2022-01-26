@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import com.dionlan.exception.InvalidJwtAuthenticationException;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
@@ -39,7 +40,6 @@ public class JwtTokenProvider {
 		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 	}
 	
-	@SuppressWarnings("deprecation")
 	public String createToken(String username, List<String> roles) {
 		Claims claims = Jwts.claims().setSubject(username);
 		claims.put("roles", roles);
@@ -60,7 +60,6 @@ public class JwtTokenProvider {
 		return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
 	}
 
-	@SuppressWarnings("deprecation")
 	private String getUsername(String token) {
 		return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
 	}
@@ -73,7 +72,6 @@ public class JwtTokenProvider {
 		return null;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public boolean validateToken(String token) {
 		try {
 			Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
@@ -85,5 +83,4 @@ public class JwtTokenProvider {
 			throw new InvalidJwtAuthenticationException("Expired or invalid JWT token");
 		}
 	}
-
 }

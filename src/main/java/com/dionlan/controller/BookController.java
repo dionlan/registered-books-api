@@ -41,7 +41,6 @@ public class BookController {
 			@RequestParam(value="limit", defaultValue = "12") int limit,
 			@RequestParam(value="direction", defaultValue = "asc") String direction) {
 		
-
 		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
 		
 		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "title"));
@@ -53,7 +52,6 @@ public class BookController {
 					linkTo(methodOn(BookController.class).findById(p.getKey())).withSelfRel()
 				)
 			);
-
         return ResponseEntity.ok(CollectionModel.of(books));
 	}	
 	
@@ -88,6 +86,5 @@ public class BookController {
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		service.delete(id);
 		return ResponseEntity.ok().build();
-	}	
-	
+	}
 }

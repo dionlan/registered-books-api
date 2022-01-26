@@ -1,7 +1,7 @@
 package com.dionlan.data.vo.v1;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 
 import org.springframework.hateoas.RepresentationModel;
 
@@ -21,7 +21,7 @@ public class BookVO extends RepresentationModel<BookVO>{
 	@JsonProperty("id")
 	private Long key;
 	private String author;
-	private OffsetDateTime launchDate;
+	private LocalDate launchDate;
 	private BigDecimal price;
 	private String title;
 }
